@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import { withLDProvider } from "launchdarkly-react-client-sdk";
+import { getConfig, types as configTypes } from "./config";
 
 function App() {
   return (
@@ -22,4 +24,6 @@ function App() {
   );
 }
 
-export default App;
+export default withLDProvider({
+  clientSideID: getConfig(configTypes.launchDarkly),
+})(App);
